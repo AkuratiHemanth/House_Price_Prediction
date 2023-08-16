@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>House Price Predictor</title>
+    <style>
+        /* CSS styles go here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .title {
+            text-align: center;
+            padding: 20px;
+            background-color: #f2f2f2;
+        }
+
+        .title h1 {
+            color: #333;
+            margin: 0;
+        }
+
+        .house {
+            width: 50px;
+            height: 50px;
+        }
+
+        .menu {
+            background-color: #333;
+            padding: 10px;
+        }
+
+        .menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .menu ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .page {
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .intro {
+            margin-bottom: 20px;
+        }
+
+        .info input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .info button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .result {
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        <img src="https://cdn-icons-png.flaticon.com/512/6597/6597982.png" class="house" alt="House Icon" width="50px" height="50px">
+        <h1>House Price Predictor</h1>
+    </div>
+
+    <div class="menu">
+        <ul>
+            <li><a href="/method2">Model 2</a></li>
+            </ul>
+    </div>
+
+    <div class="page">
+        <div class="container">
+            <div class="intro">
+                <p><b>Note: Enter values that are reasonable within the context.</b></p>
+            </div>
+
+            <form action="{{ url_for('predict') }}" method="post" class="info" autocomplete="off">
+                <input type="text" name="Average Income of Area" placeholder="Average Area Income" required>
+                <br>
+                <input type="text" name="Average House Age" placeholder="Area House Age" required>
+                <br>
+                <input type="text" name="Average Number of Rooms (living, patio etc.)" placeholder="Average Number of Rooms" required>
+                <br>
+                <input type="text" name="Average Number of Bedrooms" placeholder="Number of Bedrooms">
+                <br>
+                <input type="text" name="Average Area Population" placeholder="Average Area Population">
+                <br>
+                <button type="submit">Predict</button>
+            </form>
+
+            {% if prediction_text %}
+            <div class="result">
+                <p><b>{{ prediction_text }}</b></p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
